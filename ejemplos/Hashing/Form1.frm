@@ -56,8 +56,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Declare Function HashPassword Lib "AOLibrary.dll" (ByVal RawPassword As String) As String
-Private Declare Function TestLength Lib "AOLibrary.dll" (ByRef RawPassword As String) As Long
+Private Declare Function HashPassword Lib "AOLibrary.dll" (ByVal RawPassword As String, Optional ByVal Workload As Byte = 5) As String
 Private Declare Function VerifyPassword Lib "AOLibrary.dll" (ByVal RawPassword As String, ByVal HashedPassword As String) As Boolean
 
 Private Sub cmdHash_Click()
