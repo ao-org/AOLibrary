@@ -7,3 +7,4 @@
 
 *.lib binary
 *.dll binary
+*.exe binary
