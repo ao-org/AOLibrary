@@ -17,7 +17,6 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    ScaleHeight     =   3030
    ScaleWidth      =   4560
-   ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
    Begin VB.CheckBox chkVerificar 
       Caption         =   "Comparar"
@@ -57,8 +56,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Declare Function HashPassword Lib "C:\Users\Jopi\Desktop\asd\AOLibrary.dll" (ByVal RawPassword As String) As String
-Private Declare Function VerifyPassword Lib "C:\Users\Jopi\Desktop\asd\AOLibrary.dll" (ByVal RawPassword As String, ByVal HashedPassword As String) As Boolean
+Private Declare Function HashPassword Lib "AOLibrary.dll" (ByVal RawPassword As String) As String
+Private Declare Function TestLength Lib "AOLibrary.dll" (ByRef RawPassword As String) As Long
+Private Declare Function VerifyPassword Lib "AOLibrary.dll" (ByVal RawPassword As String, ByVal HashedPassword As String) As Boolean
 
 Private Sub cmdHash_Click()
     
@@ -75,4 +75,3 @@ Private Sub cmdHash_Click()
     End If
     
 End Sub
-

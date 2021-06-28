@@ -2,16 +2,14 @@
 #pragma comment(lib,"comsuppw.lib")
 #include <util.h>
 
-std::string bstr_to_string(LPSTR string_to_convert)
+std::string bstr_to_string(BSTR string_to_convert)
 {
-	_bstr_t source = _bstr_t(string_to_convert);
-	int length = source.length();
-	char* char_array = new char[length];
-	strcpy_s(char_array, length + 1, source);
-	return char_array;
+	auto bstr = _com_util::ConvertBSTRToString(string_to_convert);
+	std::string str(bstr);
+	delete[] bstr;
+	return str;
 }
 
-BSTR string_to_bstr(std::string string_to_convert)
-{
-    return _bstr_t(string_to_convert.c_str()).GetBSTR();
+BSTR string_to_bstr(std::string string_to_convert) {
+	return _bstr_t(string_to_convert.c_str()).GetBSTR();
 }

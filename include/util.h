@@ -4,7 +4,7 @@
 #include <comdef.h>
 #include <string>
 
-std::string bstr_to_string(LPSTR string_to_convert);
+std::string bstr_to_string(BSTR string_to_convert);
 BSTR string_to_bstr(std::string string_to_convert);
 
 #endif

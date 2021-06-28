@@ -5,19 +5,17 @@
 
 #include "bcrypt/BCrypt.hpp"
 
-BSTR EXPORT CALLBACK HashPassword(LPSTR RawPassword) {
+BSTR EXPORT CALLBACK HashPassword(char* RawPassword) {
     #pragma UNDECORATE
-    // Constraseña a hashear + BSTR -> std::string
-    std::string inputPassword = bstr_to_string(RawPassword);
-    
+    // Constraseña a hashear    
     // Hasheamos la contraseña
-    std::string hashedPassword = BCrypt::generateHash(inputPassword);
+    std::string hashedPassword = BCrypt::generateHash(RawPassword, 9);
 
     // Devolvemos la contraseña hasheada (std::string -> BSTR)
-    return string_to_bstr(hashedPassword);
+    return SysAllocStringByteLen(hashedPassword.c_str(), hashedPassword.size());
 }
 
-BOOL EXPORT CALLBACK VerifyPassword(LPSTR RawPassword, LPSTR HashedPassword) {
+BOOL EXPORT CALLBACK VerifyPassword(char* RawPassword, char* HashedPassword) {
     #pragma UNDECORATE
-    return BCrypt::validatePassword(bstr_to_string(RawPassword), bstr_to_string(HashedPassword));
+    return BCrypt::validatePassword(RawPassword, HashedPassword);
 }
