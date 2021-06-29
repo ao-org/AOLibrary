@@ -1,4 +1,4 @@
-#include <declares.h>
+#include "./declares.h"
 
 BOOL EXPORT APIENTRY DllMain()
 {

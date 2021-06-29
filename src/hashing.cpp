@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <declares.h>
+#include "./declares.h"
 #include "bcrypt/BCrypt.hpp"
 
 BSTR EXPORT CALLBACK HashPassword(char* RawPassword, uint8_t workload = 9) {
